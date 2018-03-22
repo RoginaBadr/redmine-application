@@ -1,0 +1,9 @@
+ver_ruby: 2.2.3
+Needed_Packages: 
+  - libmysqlclient-dev
+  - imagemagick
+  - libmagickwand-dev
+  - libcurl4-openssl-dev
+  - apt-transport-https
+  - ca-certificates
+

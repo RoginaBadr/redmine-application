@@ -1,0 +1,30 @@
+---
+    
+    
+    - name: stopping apache.
+      systemd: name=apache2 state=stopped
+  
+
+    - name: installing nginx.
+      apt: name=nginx state=present     
+    
+    - name: installing passenger.
+      gem: name=passenger state=present
+
+    - name: installing passenger-nginx 
+      apt: name=nginx-extras state=present 
+    
+    - name: starting nginx.
+      systemd: name=nginx  state=started enabled=yes
+
+
+    - name: copying homepage 
+      copy: src=nginx_default.conf dest=/etc/nginx/sites-available/default mode='0644'
+     
+    - name: copying nginx.conf
+      copy: src=nginx.conf dest=/etc/nginx/nginx.conf mode='0644'
+
+
+    - name:   restart nginx
+      service: name=nginx state=restarted
+

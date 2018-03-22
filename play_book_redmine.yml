@@ -1,0 +1,11 @@
+--- 
+
+- name: installing nginx 
+  hosts: all 
+  remote_user: ubuntu 
+  
+  roles:
+    - mysql  
+    - nginx
+    - redmine
+

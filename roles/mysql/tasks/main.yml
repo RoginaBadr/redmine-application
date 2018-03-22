@@ -1,0 +1,35 @@
+---
+- name: instaling mysql_python
+  apt: name=python-mysqldb state=present 
+
+- name: installing mysql 
+  apt: name=mysql-server state=present 
+
+- name: copying conf for mysql
+  template: src=my.cnf.j2 dest=/etc/mysql/mysql.conf.d/mysqld.cnf mode='0644'
+
+- copy:
+    src: .my.cnf
+    dest: /root/.my.cnf
+    owner: ubuntu
+    group: ubuntu
+    mode: u=rw,g=r,o=r
+  notify: Restart my_sql_server
+   
+
+
+- name: change password for root 
+  mysql_user: name=root password="{{password}}" state=present 
+
+- name: Create a database for redmine
+  mysql_db: name={{database}}  state=present
+
+- name: Create a user for redmine 
+  mysql_user: name={{user}}  password={{password_2}} state=present
+
+- name: Set redmine privileges
+  mysql_user:
+    user={{ user }}
+    password={{ password_2 }}
+    state=present
+    priv='redmine.*:ALL' 

@@ -1,0 +1,8 @@
+---
+
+
+  - name: Restart my_sql_server
+    become: true
+    service:
+      name: mysql-server 
+      state: restarted

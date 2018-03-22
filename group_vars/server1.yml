@@ -1,0 +1,7 @@
+buffersize: 18M 
+packet: 18M 
+cachelimit: 1.5M
+password: RANA_0123456
+password_2: redmine
+database: redmine 
+user: redmine
